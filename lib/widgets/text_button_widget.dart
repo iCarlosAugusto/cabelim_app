@@ -27,10 +27,11 @@ class TextButtonWidget extends StatelessWidget {
       child: TextButton(
           style: ButtonStyle(
               shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          )),
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+            )
+          ),
           onPressed: isDisabled || isLoading ? null : onTap,
           child: Row(
             mainAxisSize: MainAxisSize.min,

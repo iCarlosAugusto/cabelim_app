@@ -10,8 +10,8 @@ class LayoutWidget extends StatelessWidget {
     this.appBar,
     this.paddingTop = 0,
     this.paddingBottom = 16,
-    this.paddingLeft = 16,
-    this.paddingRight = 16,
+    this.paddingLeft = 20,
+    this.paddingRight = 20,
   }) : super(key: key);
   final double paddingTop;
   final double paddingBottom;

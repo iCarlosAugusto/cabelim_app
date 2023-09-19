@@ -9,7 +9,10 @@ class TextWidget extends StatelessWidget {
       this.fontSize ,
       this.color,
       this.margin,
-      this.textAlign
+      this.textAlign,
+      this.customFontsize,
+      this.customWeight,
+      this.textOverflow,
     });
 
   final String content;
@@ -18,6 +21,9 @@ class TextWidget extends StatelessWidget {
   final Color? color;
   final EdgeInsets? margin;
   final TextAlign? textAlign;
+  final double? customFontsize;
+  final FontWeight? customWeight;
+  final TextOverflow? textOverflow;
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +42,13 @@ class TextWidget extends StatelessWidget {
       child: Text(
         textAlign: textAlign,
         content,
+        overflow: textOverflow,
         style: TextStyle(
             color: color,
-            fontWeight: isFontWeight ? FontWeight.w500 : null,
-            fontSize: calculateFontSize()),
+            fontWeight: customWeight ?? FontWeight.w500,
+            fontSize: customFontsize ?? calculateFontSize(),
+            fontFamily: 'Urbanist'
+          ),
       ),
     );
   }
