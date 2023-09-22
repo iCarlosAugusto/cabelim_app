@@ -4,6 +4,7 @@ import 'package:cabelin_app/widgets/layout_widget.dart';
 import 'package:cabelin_app/widgets/text_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginView extends StatelessWidget {
@@ -30,11 +31,7 @@ class LoginView extends StatelessWidget {
                 await FirebaseAuth.instance.signInWithCredential(
                   credential
                 );
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const HomePage(),
-                  ),
-                );
+                context.go("/homePage");
               } catch (e) {
                 print(e);
               }

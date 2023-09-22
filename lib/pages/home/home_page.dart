@@ -1,3 +1,4 @@
+import 'package:cabelin_app/widgets/appbar_widget.dart';
 import 'package:cabelin_app/widgets/category_wiget.dart';
 import 'package:cabelin_app/widgets/layout_widget.dart';
 import 'package:cabelin_app/widgets/list_widget.dart';
@@ -14,6 +15,7 @@ class HomePage extends StatelessWidget {
     String urlImage = "https://s3-alpha-sig.figma.com/img/8739/5bba/de53e0225d86366a4cc216da592e867a?Expires=1696204800&Signature=eSmFZXyCMVVpxIQnFIeqFK77AAPrJRyP3LOQ3yo7WGU4yWAu0nj-qlJL8mZY7ep6hhPPaTX4EcJwXD1r4rOnETXdEUU2wEizut5dj9Kjvg234elbS5hn9fR5pGki1AMu49EnGnGJsxM~8w0pnjlI2gLbq95FJo9IpjGt1aCqnXZAbrFbXofPmt16By7aV8ocvvqocT5TnqCmS4Zan9AAX410hRE2duczEPU6aOK61ISxMctEPnrJlOYIHEtJPZGdQ4oRklYaSQga3NAFldasfMQzVZDCvbrEMTpIhy5jytqgQkCFyQXlGOb-b89bmcjIgqROoR6~e0Aq90lTLosB6g__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4";
 
     return LayoutWidget(
+      appBar: AppbarWidget(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
