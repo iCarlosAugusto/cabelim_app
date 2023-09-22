@@ -15,6 +15,7 @@ class HomePage extends StatelessWidget {
 
     return LayoutWidget(
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const TextWidget(
@@ -95,8 +96,82 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
+          Container(
+            margin: const EdgeInsets.only(top: 40),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const TextWidget(
+                  "Perto de mim",
+                  customWeight: FontWeight.w600,
+                ),
+                TextButtonWidget(title: "Ver mais", onTap: () {
+          
+                })
+              ],
+            ),
+          ),
+        
+          Container(
+            padding: const EdgeInsets.all(8),
+            height: 212,
+            child: ListView.separated(
+              itemCount: 10,
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              separatorBuilder: (_, __) => Container(
+                width: 16,
+              ),
+              itemBuilder: (context, index) => Container(
+                width: 110,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 81,
+                      width: 94,
+                      decoration: const BoxDecoration(
+                        color: Colors.purple,
+                        borderRadius: BorderRadius.all(Radius.circular(8))
+                      ),
+                    ),
+                    const TextWidget(
+                      "Viking \n Barbearia",
+                      margin: EdgeInsets.only(top: 12),
+                      customFontsize: 13,
+                      customWeight: FontWeight.w600,
+                    ),
+                    const TextWidget(
+                      "Atendimento até \n às 20h",
+                      margin: EdgeInsets.only(top: 6),
+                      customFontsize: 10,
+                      customWeight: FontWeight.w300,
+                    ),
 
-
+                    Container(
+                      margin: const EdgeInsets.only(top: 14),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 4,
+                        vertical: 2
+                      ),
+                      decoration: const BoxDecoration(
+                        color: Color(0XFFC5FCFD),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(32)
+                        )
+                      ),
+                      child: const TextWidget(
+                        "20% OFF",
+                        color: Color(0XFF0E8587),
+                        customFontsize: 9,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
           Container(
             margin: const EdgeInsets.only(top: 40),
             child: Row(
