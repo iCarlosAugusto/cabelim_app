@@ -4,6 +4,7 @@ import 'package:cabelin_app/widgets/layout_widget.dart';
 import 'package:cabelin_app/widgets/list_widget.dart';
 import 'package:cabelin_app/widgets/text_button_widget.dart';
 import 'package:cabelin_app/widgets/text_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
@@ -65,9 +66,15 @@ class HomePage extends StatelessWidget {
           Container(
             width: 353,
             height: 191,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-              color: Colors.grey
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
+              color: Colors.grey[200],
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: CachedNetworkImageProvider(
+                  urlImage,
+                )
+              )
             ),
             child: const Stack(
               children: [
