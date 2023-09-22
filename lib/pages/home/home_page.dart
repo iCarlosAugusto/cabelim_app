@@ -18,9 +18,45 @@ class HomePage extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            margin: const EdgeInsets.only(top: 24),
+            child: Row(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(right: 16),
+                  child: CategoryWidget(
+                  title: "Saloes",
+                  imageUrl: "assets/salao.png",
+                  onTap: () {},
+                ),
+              ) ,
+                Container(
+                  margin: const EdgeInsets.only(right: 16),
+                  child: CategoryWidget(
+                  title: "Barba",
+                  imageUrl: "assets/barbearia.png",
+                  onTap: () {},
+                ),
+              ) ,
+                Container(
+                  margin: const EdgeInsets.only(right: 16),
+                  child: CategoryWidget(
+                  title: "Tatto",
+                  imageUrl: "assets/tatuagem.png",
+                  onTap: () {},
+                ),
+              ) ,
+                CategoryWidget(
+                  title: "SPA",
+                  imageUrl: "assets/spa.png",
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ),
           const TextWidget(
             "Ultimas atualizações",
-            margin: EdgeInsets.only(top: 41, bottom: 12),
+            margin: EdgeInsets.only(top: 40, bottom: 12),
             customWeight: FontWeight.w600,
           ),
 
@@ -56,45 +92,6 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          const TextWidget(
-            "Categorias",
-            margin: EdgeInsets.only(top: 41, bottom: 12),
-            customWeight: FontWeight.w600,
-          ),
-          
-          Row(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(right: 16),
-                child: CategoryWidget(
-                title: "Saloes",
-                imageUrl: "assets/salao.png",
-                onTap: () {},
-              ),
-            ) ,
-              Container(
-                margin: const EdgeInsets.only(right: 16),
-                child: CategoryWidget(
-                title: "Barba",
-                imageUrl: "assets/barbearia.png",
-                onTap: () {},
-              ),
-            ) ,
-              Container(
-                margin: const EdgeInsets.only(right: 16),
-                child: CategoryWidget(
-                title: "Tatto",
-                imageUrl: "assets/tatuagem.png",
-                onTap: () {},
-              ),
-            ) ,
-              CategoryWidget(
-                title: "SPA",
-                imageUrl: "assets/spa.png",
-                onTap: () {},
-              ),
-            ],
           ),
           Container(
             margin: const EdgeInsets.only(top: 40),
