@@ -5,11 +5,11 @@ import 'package:go_router/go_router.dart';
 final router = GoRouter(
   routes: [
     GoRoute(
-      path: '/homePage',
+      path: '/',
       builder: (context, state) => const HomePage(),
     ),
     GoRoute(
-      path: '/',
+      path: '/login',
       builder: (context, state) => const LoginView(),
     ),
   ],

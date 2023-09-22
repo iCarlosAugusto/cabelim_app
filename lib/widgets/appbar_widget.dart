@@ -26,6 +26,8 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    const photoUrl = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.QjynegEfQVPq5kIEuX9fWQHaFj%26pid%3DApi&f=1&ipt=5fe1fb9ff9e76aa4679ae19df43c54f7ebb537f83761501260eb0b033d611ad4&ipo=images";
+
     return AppBar(
       backgroundColor: backgroundColor,
       iconTheme: IconThemeData(
@@ -55,7 +57,9 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: Image.network(
-              FirebaseAuth.instance.currentUser!.photoURL!,
+              photoUrl,
+              fit: BoxFit.cover,
+              //FirebaseAuth.instance.currentUser!.photoURL!,
             ),
           ),
         )
