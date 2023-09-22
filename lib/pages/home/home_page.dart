@@ -1,8 +1,10 @@
 import 'package:cabelin_app/widgets/category_wiget.dart';
 import 'package:cabelin_app/widgets/layout_widget.dart';
+import 'package:cabelin_app/widgets/list_widget.dart';
 import 'package:cabelin_app/widgets/text_button_widget.dart';
 import 'package:cabelin_app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:like_button/like_button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -110,6 +112,42 @@ class HomePage extends StatelessWidget {
                 })
               ],
             ),
+          ),
+          ListWidget(
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: 5,
+            separatorBuilder: (_, __) => Container(height: 26),
+            itemBuilder: (index, _) {
+              return ListTile(
+                contentPadding: const EdgeInsets.only(right: 8, left: 8),
+                leading: Container(
+                  height: 56,
+                  width: 56,
+                  decoration: const BoxDecoration(
+                    color: Colors.purple,
+                    borderRadius: BorderRadius.all(Radius.circular(8))
+                  ),
+                ),
+                horizontalTitleGap: 24,
+                title: const TextWidget(
+                  "Viking Barber",
+                  customWeight: FontWeight.w600,
+                  customFontsize: 16,
+                ),
+                subtitle: const TextWidget(
+                  "Atendimento até as 19:00",
+                  customWeight: FontWeight.w300,
+                  customFontsize: 13,
+                ),
+                trailing: IconButton(
+                  padding: EdgeInsets.zero,
+                  icon: const Icon(Icons.favorite_outline),
+                  onPressed: () {
+                    print("TODO: favoritar salao");
+                  },
+                )
+              );
+            },
           )
         ],
       )
