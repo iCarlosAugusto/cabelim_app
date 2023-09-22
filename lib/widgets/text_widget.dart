@@ -47,7 +47,7 @@ class TextWidget extends StatelessWidget {
             color: color,
             fontWeight: customWeight ?? FontWeight.w500,
             fontSize: customFontsize ?? calculateFontSize(),
-            fontFamily: 'Urbanist'
+            fontFamily: 'Sora'
           ),
       ),
     );
