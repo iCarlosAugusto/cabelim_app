@@ -17,9 +17,10 @@ class LoginOrRegister extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const TextWidget("Cabelim"),
+          Image.asset("assets/logo.png"),
           Container(
             width: MediaQuery.of(context).size.width,
+            margin: const EdgeInsets.only(top: 16),
             padding: const EdgeInsets.only(left: 16, right: 16),
             child: Column(
               children: [
@@ -69,7 +70,7 @@ class LoginOrRegister extends StatelessWidget {
             margin: const EdgeInsets.only(top: 16),
             title: "Entrar na minha conta",
             onTap: () {
-              context.pushNamed("/login");
+              context.push("/login");
             }
           ),
           OutlineButtonWidgt(
