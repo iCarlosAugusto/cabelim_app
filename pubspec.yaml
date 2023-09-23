@@ -43,6 +43,7 @@ dependencies:
   like_button: ^2.0.5
   json_annotation: ^4.8.1
   go_router: ^11.0.0
+  lottie: ^2.6.0
 
 dev_dependencies:
   flutter_test:

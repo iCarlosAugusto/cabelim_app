@@ -1,8 +1,8 @@
 import 'package:cabelin_app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
-class ButtonWidget extends StatelessWidget {
-  const ButtonWidget({
+class OutlineButtonWidgt extends StatelessWidget {
+  const OutlineButtonWidgt({
     super.key,
     required this.title,
     required this.onTap,
@@ -12,7 +12,7 @@ class ButtonWidget extends StatelessWidget {
     this.fullWidth = false,
     this.margin,
     this.color,
-    this.padding
+    this.padding,
   });
 
   final String title;
@@ -29,10 +29,9 @@ class ButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
-      child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: color,
-            padding: padding
+      child: OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            side: BorderSide(width: 2, color: color ?? const Color(0XFF14CC60)),
           ),
           onPressed: isDisabled || isLoading ? null : onTap,
           child: Row(
@@ -46,9 +45,10 @@ class ButtonWidget extends StatelessWidget {
                   ? const SizedBox(
                       height: 24, width: 24, child: CircularProgressIndicator())
                   : TextWidget(
+                      margin: const EdgeInsets.only(left: 8),
                       title,
                       fontSize: AvailableFontSizes.small,
-                      color: Colors.white,
+                      color: color ?? const Color(0XFF14CC60),
                     )
             ],
           )),
