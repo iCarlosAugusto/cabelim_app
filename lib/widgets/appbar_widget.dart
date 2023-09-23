@@ -10,6 +10,7 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
     this.elevation,
     this.backgroundColor,
     this.showProfile = false,
+    this.showNotifications = false,
     this.showLogo = false,
     this.actions,
     this.onBack,
@@ -21,6 +22,7 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
   bool showProfile = false;
   bool showLogo = false;
+  bool showNotifications = false;
   Widget? actions;
   Function()? onBack;
 
@@ -33,15 +35,23 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
       iconTheme: IconThemeData(
         color: backgroundColor != null ? Colors.white : Colors.black
       ),
-      title: Image.asset(
-        "assets/logo.png",
-        fit: BoxFit.contain,
-        height: 33,
-        width: 76,
+      title: Visibility(
+        visible: showLogo,
+        child: Image.asset(
+          "assets/logo.png",
+          fit: BoxFit.contain,
+          height: 33,
+          width: 76,
+        ),
       ),
       actions: [
-        const Icon(Icons.notifications_outlined),
-        Container(
+        Visibility(
+          visible: showNotifications,
+          child: const Icon(Icons.notifications_outlined),
+        ),
+        Visibility(
+          visible: showProfile,
+          child: Container(
           width: 24,
           height: 24,
           margin: const EdgeInsets.only(right: 22, left: 24),
@@ -62,6 +72,7 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
               //FirebaseAuth.instance.currentUser!.photoURL!,
             ),
           ),
+        )
         )
       ],
     );
