@@ -1,6 +1,7 @@
 import 'package:cabelin_app/pages/home/home_page.dart';
 import 'package:cabelin_app/pages/login/login_view.dart';
 import 'package:cabelin_app/pages/loginOrRegister/view/loginOrRegister.dart';
+import 'package:cabelin_app/pages/profile/view/profile.view.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
@@ -17,6 +18,10 @@ final router = GoRouter(
     GoRoute(
       path: '/login',
       builder: (context, state) => const LoginView(),
+    ),
+    GoRoute(
+      path: '/profile',
+      builder: (context, state) => const ProfileView(),
     ),
   ],
 );

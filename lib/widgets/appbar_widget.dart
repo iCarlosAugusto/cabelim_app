@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
   AppbarWidget({
@@ -51,28 +52,33 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
         ),
         Visibility(
           visible: showProfile,
-          child: Container(
-          width: 24,
-          height: 24,
-          margin: const EdgeInsets.only(right: 22, left: 24),
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(100)
+          child: GestureDetector(
+            onTap: () {
+              context.push("/profile");
+            },
+            child: Container(
+            width: 24,
+            height: 24,
+            margin: const EdgeInsets.only(right: 22, left: 24),
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(100)
+              ),
+              border: Border.all(
+                color: Colors.purple,
+                width: 2
+              )
             ),
-            border: Border.all(
-              color: Colors.purple,
-              width: 2
-            )
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(100),
-            child: Image.network(
-              photoUrl,
-              fit: BoxFit.cover,
-              //FirebaseAuth.instance.currentUser!.photoURL!,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(100),
+              child: Image.network(
+                photoUrl,
+                fit: BoxFit.cover,
+                //FirebaseAuth.instance.currentUser!.photoURL!,
+              ),
             ),
-          ),
-        )
+                  ),
+          )
         )
       ],
     );
