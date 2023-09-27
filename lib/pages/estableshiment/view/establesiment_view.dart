@@ -13,13 +13,13 @@ class EstableshimentView extends StatelessWidget {
     return LayoutWidget(
       paddingLeft: 0,
       paddingRight: 0,
-      child: Column(
+      child: Stack(
         children: [
           Stack(
             children: [
               Image.network(
                 imageUrl,
-                height: 230,
+                height: 260,
                 fit: BoxFit.fill,
                 width: MediaQuery.of(context).size.width,
               ),
@@ -30,7 +30,7 @@ class EstableshimentView extends StatelessWidget {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.6),
-                        blurRadius: 30,
+                        blurRadius: 40,
                       ),
                     ],
                   ),
@@ -51,7 +51,7 @@ class EstableshimentView extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () {
-                        context.pop();
+                        print("Favorite");
                       },
                       icon: const Icon(
                         Icons.favorite_outline,
@@ -65,8 +65,38 @@ class EstableshimentView extends StatelessWidget {
             ],
           ),
 
-
-          const TextWidget("Salão MozzaneteE")
+          Positioned(
+            top: 250,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16)
+                )
+              ),
+              child: const Padding(
+                padding: EdgeInsets.only(
+                  left: 21,
+                  right: 21,
+                  top: 12,
+                  bottom: 12
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextWidget("Salão Mozzanete"),
+                        Icon(Icons.star_outline)
+                      ],
+                    )
+                  ],
+                ) 
+              ) ,
+            ),
+          ),
         ],
       )
     );
