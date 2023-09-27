@@ -6,6 +6,7 @@ import 'package:cabelin_app/widgets/text_button_widget.dart';
 import 'package:cabelin_app/widgets/text_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:like_button/like_button.dart';
 
 class HomePage extends StatelessWidget {
@@ -133,51 +134,54 @@ class HomePage extends StatelessWidget {
               separatorBuilder: (_, __) => Container(
                 width: 16,
               ),
-              itemBuilder: (context, index) => Container(
-                width: 110,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 81,
-                      width: 94,
-                      decoration: const BoxDecoration(
-                        color: Colors.purple,
-                        borderRadius: BorderRadius.all(Radius.circular(8))
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () => context.push('/estableshiment'),
+                child: SizedBox(
+                  width: 110,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 81,
+                        width: 94,
+                        decoration: const BoxDecoration(
+                          color: Colors.purple,
+                          borderRadius: BorderRadius.all(Radius.circular(8))
+                        ),
                       ),
-                    ),
-                    const TextWidget(
-                      "Viking \n Barbearia",
-                      margin: EdgeInsets.only(top: 12),
-                      customFontsize: 13,
-                      customWeight: FontWeight.w600,
-                    ),
-                    const TextWidget(
-                      "Atendimento até \n às 20h",
-                      margin: EdgeInsets.only(top: 6),
-                      customFontsize: 10,
-                      customWeight: FontWeight.w300,
-                    ),
-
-                    Container(
-                      margin: const EdgeInsets.only(top: 14),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 4,
-                        vertical: 2
+                      const TextWidget(
+                        "Viking \n Barbearia",
+                        margin: EdgeInsets.only(top: 12),
+                        customFontsize: 13,
+                        customWeight: FontWeight.w600,
                       ),
-                      decoration: const BoxDecoration(
-                        color: Color(0XFFC5FCFD),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(32)
-                        )
+                      const TextWidget(
+                        "Atendimento até \n às 20h",
+                        margin: EdgeInsets.only(top: 6),
+                        customFontsize: 10,
+                        customWeight: FontWeight.w300,
                       ),
-                      child: const TextWidget(
-                        "20% OFF",
-                        color: Color(0XFF0E8587),
-                        customFontsize: 9,
-                      ),
-                    )
-                  ],
+              
+                      Container(
+                        margin: const EdgeInsets.only(top: 14),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 4,
+                          vertical: 2
+                        ),
+                        decoration: const BoxDecoration(
+                          color: Color(0XFFC5FCFD),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(32)
+                          )
+                        ),
+                        child: const TextWidget(
+                          "20% OFF",
+                          color: Color(0XFF0E8587),
+                          customFontsize: 9,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
