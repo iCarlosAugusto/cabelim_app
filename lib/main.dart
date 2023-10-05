@@ -83,12 +83,21 @@ class MyApp extends StatelessWidget {
             ),
           ),
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-              enableFeedback: false,
-              showSelectedLabels: true,
-              showUnselectedLabels: true,
-              elevation: 0,
-              selectedIconTheme: IconThemeData(color: Colors.orange),
-              unselectedIconTheme: IconThemeData(color: Colors.grey)),
+            enableFeedback: false,
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
+            elevation: 0,
+            selectedItemColor: Color(0XFF322938),
+            unselectedItemColor: Color(0XFF322938),
+            selectedLabelStyle: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 13
+            ),
+            unselectedLabelStyle: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 13
+            )
+          ),
           primarySwatch: Colors.blue,
         ),
       routerConfig: router

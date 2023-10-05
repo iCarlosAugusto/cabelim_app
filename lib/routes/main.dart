@@ -2,6 +2,7 @@ import 'package:cabelin_app/pages/estableshiment/view/establesiment_view.dart';
 import 'package:cabelin_app/pages/home/home_page.dart';
 import 'package:cabelin_app/pages/login/login_view.dart';
 import 'package:cabelin_app/pages/loginOrRegister/view/loginOrRegister.dart';
+import 'package:cabelin_app/pages/pageView/pageview_view.dart';
 import 'package:cabelin_app/pages/profile/view/profile.view.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,7 +15,7 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/homePage',
-      builder: (context, state) => const HomePage(),
+      builder: (context, state) => const PageViewApp(),
     ),
     GoRoute(
       path: '/login',
