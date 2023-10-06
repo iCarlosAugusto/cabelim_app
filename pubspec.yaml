@@ -46,6 +46,7 @@ dependencies:
   lottie: ^2.6.0
   mobx: ^2.2.0
   flutter_mobx: ^2.1.0
+  image_picker: ^1.0.4
 
 dev_dependencies:
   flutter_test:
