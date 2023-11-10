@@ -135,7 +135,7 @@ class HomePage extends StatelessWidget {
                 width: 16,
               ),
               itemBuilder: (context, index) => GestureDetector(
-                onTap: () => context.push('/estableshiment'),
+                onTap: () => context.push('/v2/professionals'),
                 child: SizedBox(
                   width: 110,
                   child: Column(
