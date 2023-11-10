@@ -74,12 +74,12 @@ class HomePage extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(8)),
               color: Colors.grey[200],
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: CachedNetworkImageProvider(
-                  urlImage,
-                )
-              )
+              //image: DecorationImage(
+              //  fit: BoxFit.cover,
+              //  image: CachedNetworkImageProvider(
+              //    urlImage,
+              //  )
+              //)
             ),
             child: const Stack(
               children: [

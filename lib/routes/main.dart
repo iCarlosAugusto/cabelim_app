@@ -1,3 +1,4 @@
+import 'package:cabelin_app/pages/confirmation/confirmation_page.dart';
 import 'package:cabelin_app/pages/estableshiment/view/establesiment_view.dart';
 import 'package:cabelin_app/pages/home/home_page.dart';
 import 'package:cabelin_app/pages/login/login_view.dart';
@@ -28,6 +29,11 @@ final router = GoRouter(
     GoRoute(
       path: '/estableshiment',
       builder: (context, state) => const EstableshimentView(),
+    ),
+    GoRoute(
+      path: '/confirmation',
+      name: 'confirmation',
+      builder: (context, state) => const ConfirmationPage(),
     ),
   ],
 );

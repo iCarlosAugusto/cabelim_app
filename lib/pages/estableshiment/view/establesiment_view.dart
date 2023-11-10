@@ -1,3 +1,4 @@
+import 'package:cabelin_app/pages/confirmation/confirmation_page.dart';
 import 'package:cabelin_app/widgets/appbar_widget.dart';
 import 'package:cabelin_app/widgets/chip_widget.dart';
 import 'package:cabelin_app/widgets/layout_widget.dart';
@@ -21,12 +22,12 @@ class EstableshimentView extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Image.network(
-                  imageUrl,
-                  height: 260,
-                  fit: BoxFit.fill,
-                  width: MediaQuery.of(context).size.width,
-                ),
+                //Image.network(
+                //  imageUrl,
+                //  height: 260,
+                //  fit: BoxFit.fill,
+                //  width: MediaQuery.of(context).size.width,
+                //),
                 Container(
                   height: 110,
                   width: MediaQuery.of(context).size.width,
@@ -187,6 +188,7 @@ class EstableshimentView extends StatelessWidget {
                       separatorBuilder: (_, __) => Container(height: 26),
                       itemBuilder: (index, _) {
                         return ListTile(
+                            onTap: () =>  context.push("/confirmation"),
                             contentPadding:
                                 const EdgeInsets.only(right: 8, left: 8),
                             leading: Container(
