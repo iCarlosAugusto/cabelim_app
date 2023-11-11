@@ -12,12 +12,14 @@ class LayoutWidget extends StatelessWidget {
     this.paddingBottom = 16,
     this.paddingLeft = 20,
     this.paddingRight = 20,
+    this.floatingActionButton,
   }) : super(key: key);
   final double paddingTop;
   final double paddingBottom;
   final double paddingLeft;
   final double paddingRight;
   final AppbarWidget? appBar;
+  final Widget? floatingActionButton;
   final Widget child;
 
   @override
@@ -27,6 +29,7 @@ class LayoutWidget extends StatelessWidget {
       child: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) => Scaffold(
+            floatingActionButton: floatingActionButton,
             appBar: appBar,
             body: SingleChildScrollView(
               child: ConstrainedBox(

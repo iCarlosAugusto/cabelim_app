@@ -1,5 +1,4 @@
-import 'package:cabelin_app/pages/confirmation/confirmation_page.dart';
-import 'package:cabelin_app/widgets/appbar_widget.dart';
+import 'package:cabelin_app/widgets/button_widget.dart';
 import 'package:cabelin_app/widgets/chip_widget.dart';
 import 'package:cabelin_app/widgets/layout_widget.dart';
 import 'package:cabelin_app/widgets/list_widget.dart';
@@ -18,6 +17,7 @@ class EstableshimentView extends StatelessWidget {
     return LayoutWidget(
         paddingLeft: 0,
         paddingRight: 0,
+        floatingActionButton: ButtonWidget(title: "Agendar", onTap: () {}),
         child: Column(
           children: [
             Stack(
@@ -70,155 +70,70 @@ class EstableshimentView extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     left: 21, right: 21, top: 12, bottom: 12),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 12),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextWidget(
-                            "Salão Mozzanete",
-                            customWeight: FontWeight.w600,
-                            customFontsize: 20,
-                          ),
-                          Row(
-                            children: [
-                              TextWidget(
-                                "4,5",
-                                customFontsize: 16,
-                                customWeight: FontWeight.w600,
-                              ),
-                              Icon(
-                                Icons.star_border_rounded,
-                                color: Colors.amber,
-                              )
-                            ],
-                          )
-                        ],
-                      ),
+                    const TextWidget(
+                      "Salão Mozzanete",
+                      customWeight: FontWeight.w600,
+                      customFontsize: 20,
                     ),
-                    SizedBox(
-                      height: 25,
-                      child: ListWidget(
-                        scrollDirection: Axis.horizontal,
-                        separatorBuilder: (_, index) => const SizedBox(width: 6),
-                        itemBuilder: (_, index) => const ChipWidget(),
-                        itemCount: 10
-                      ),
+                    Row(
+                      children: [
+                        Container(
+                          width: 10,
+                          height: 10,
+                          decoration: const BoxDecoration(
+                              color: Colors.green,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50))),
+                        ),
+                        const TextWidget(
+                          "Aberto",
+                          isFontWeight: true,
+                          customFontsize: 14,
+                          margin: EdgeInsets.only(left: 6, right: 16),
+                        ),
+                        const Icon(
+                          Icons.timer_outlined,
+                          size: 20,
+                          color: Colors.grey
+                        ),
+                        const TextWidget(
+                          "10:00 - 19:00",
+                          margin: EdgeInsets.only(left: 6),
+                          customFontsize: 14,
+                          color: Colors.grey
+                        )
+                      ],
                     ),
                     const TextWidget(
                       "Viking Barbearia, o lugar para você dar o melhor trato no seu cabelo!",
                       margin: EdgeInsets.symmetric(vertical: 12),
                       customFontsize: 16,
                     ),
-                    TextButtonWidget(
-                      onTap: () {},
-                      title: "Ver mais informações",
-                    ),
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: TextWidget(
-                        "Serviços em destaque",
-                        customWeight: FontWeight.w600,
-                        customFontsize: 20,
-                        margin: EdgeInsets.only(top: 24, bottom: 12),
-                      ),
-                    ),
                     Container(
-                      padding: const EdgeInsets.all(8),
-                      height: 170,
-                      child: ListView.separated(
-                        itemCount: 10,
-                        scrollDirection: Axis.horizontal,
+                      color: const Color.fromARGB(255, 219, 214, 214),
+                      width: MediaQuery.of(context).size.width,
+                      height: 200,
+                    ),
+                    const TextWidget(
+                      "Fotos",
+                      isFontWeight: true,
+                      margin: EdgeInsets.only(top: 16, bottom: 16),
+                    ),
+                    GridView.count(
                         shrinkWrap: true,
-                        separatorBuilder: (_, __) => Container(
-                          width: 16,
-                        ),
-                        itemBuilder: (context, index) => GestureDetector(
-                          onTap: () => context.push('/estableshiment'),
-                          child: SizedBox(
-                            width: 110,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  height: 81,
-                                  width: 94,
-                                  decoration: const BoxDecoration(
-                                      color: Colors.purple,
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(8))),
-                                ),
-                                const TextWidget(
-                                  "Corte de cabelo",
-                                  margin: EdgeInsets.only(top: 12),
-                                  customFontsize: 13,
-                                  customWeight: FontWeight.w300,
-                                ),
-                                const TextWidget(
-                                  "R\$ 30",
-                                  customFontsize: 16,
-                                  customWeight: FontWeight.w600,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const TextWidget(
-                          "Todos os serviços",
-                          customWeight: FontWeight.w600,
-                          customFontsize: 20,
-                        ),
-                        TextButtonWidget(
-                            title: "Ver mais",
-                            onTap: () {
-                              print("Listando todos...");
-                            })
-                      ],
-                    ),
-                    ListWidget(
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: 5,
-                      separatorBuilder: (_, __) => Container(height: 26),
-                      itemBuilder: (index, _) {
-                        return ListTile(
-                            onTap: () =>  context.push("/confirmation"),
-                            contentPadding:
-                                const EdgeInsets.only(right: 8, left: 8),
-                            leading: Container(
-                              height: 56,
-                              width: 56,
-                              decoration: const BoxDecoration(
-                                  color: Colors.purple,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(8))),
-                            ),
-                            horizontalTitleGap: 24,
-                            title: const TextWidget(
-                              "Viking Barber",
-                              customWeight: FontWeight.w600,
-                              customFontsize: 16,
-                            ),
-                            subtitle: const TextWidget(
-                              "Atendimento até as 19:00",
-                              customWeight: FontWeight.w300,
-                              customFontsize: 13,
-                            ),
-                            trailing: IconButton(
-                              padding: EdgeInsets.zero,
-                              icon: const Icon(Icons.favorite_outline),
-                              onPressed: () {
-                                print("TODO: favoritar salao");
-                              },
-                            ));
-                      },
-                    )
+                        crossAxisCount: 2,
+                        physics: const NeverScrollableScrollPhysics(),
+                        mainAxisSpacing: 20,
+                        crossAxisSpacing: 20,
+                        children: List.generate(6, (index) {
+                          return Container(
+                            width: 100,
+                            height: 100,
+                            color: const Color.fromARGB(255, 219, 214, 214),
+                          );
+                        }))
                   ],
                 )),
           ],
