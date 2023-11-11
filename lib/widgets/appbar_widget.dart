@@ -1,3 +1,4 @@
+import 'package:cabelin_app/widgets/text_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -37,15 +38,7 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
       iconTheme: IconThemeData(
         color: backgroundColor != null ? Colors.white : Colors.black
       ),
-      title: Visibility(
-        visible: showLogo,
-        child: Image.asset(
-          "assets/logo.png",
-          fit: BoxFit.contain,
-          height: 33,
-          width: 76,
-        ),
-      ),
+      title: TextWidget(title),
       actions: [
         Visibility(
           visible: showNotifications,

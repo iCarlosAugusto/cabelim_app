@@ -1,3 +1,4 @@
+import 'package:cabelin_app/widgets/appbar_widget.dart';
 import 'package:cabelin_app/widgets/button_widget.dart';
 import 'package:cabelin_app/widgets/list_widget.dart';
 import 'package:cabelin_app/widgets/text_widget.dart';
@@ -16,6 +17,7 @@ class _ChooseServicePageState extends State<ChooseServicePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppbarWidget(title: "Escolha o serviço"),
       body: SnappingSheet(
         controller: snappingSheetController,
         lockOverflowDrag: true,
@@ -123,28 +125,35 @@ class _ChooseServicePageState extends State<ChooseServicePage>
             ),
           ),
         ),
-        child: Column(children: [
-          ButtonWidget(
-              title: "Subir",
-              margin: const EdgeInsets.only(top: 100),
-              onTap: () {
-                snappingSheetController.snapToPosition(
-                  const SnappingPosition.factor(
-                    positionFactor: 0.5,
-                    snappingDuration: Duration(milliseconds: 500)
-                  )
-                );
-              }),
-          ButtonWidget(
-              title: "Descr",
-              margin: EdgeInsets.only(top: 100),
-              onTap: () {
-                snappingSheetController.snapToPosition(
-                    const SnappingPosition.factor(
-                        positionFactor: 0,
-                        snappingDuration: Duration(milliseconds: 500)));
-              })
-        ]),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              GridView.count(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                crossAxisCount: 2,
+                mainAxisSpacing: 20,
+                crossAxisSpacing: 20,
+                children: List.generate(10, (index) {
+                  return GestureDetector(
+                    onTap: () {
+                      snappingSheetController.snapToPosition(
+                        const SnappingPosition.factor(
+                          positionFactor: 0.5,
+                          snappingDuration: Duration(milliseconds: 500)
+                        )
+                      );
+                    },
+                    child: Container(
+                      width: 100,
+                      height: 100,
+                      color: const Color.fromARGB(255, 219, 214, 214),
+                    ),
+                  );
+                })
+              ),
+          ]),
+        ),
       ),
     );
   }
