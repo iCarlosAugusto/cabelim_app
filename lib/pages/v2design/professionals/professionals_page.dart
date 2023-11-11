@@ -11,12 +11,25 @@ class ProfessionalsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutWidget(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const TextWidget(
-            "Escolha um profissional",
-            isFontWeight: true,
-            margin: EdgeInsets.only(bottom: 22),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const TextWidget(
+                "Escolha um profissional",
+                isFontWeight: true,
+                customFontsize: 16,
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.close_rounded,
+                  color: Colors.grey,
+                ),
+                onPressed: () {
+                context.pop();
+              })
+            ],
           ),
           GridView.count(
             shrinkWrap: true,

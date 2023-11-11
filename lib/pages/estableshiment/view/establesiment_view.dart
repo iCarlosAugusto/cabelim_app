@@ -1,3 +1,4 @@
+import 'package:cabelin_app/pages/v2design/professionals/professionals_page.dart';
 import 'package:cabelin_app/widgets/button_widget.dart';
 import 'package:cabelin_app/widgets/chip_widget.dart';
 import 'package:cabelin_app/widgets/layout_widget.dart';
@@ -17,7 +18,33 @@ class EstableshimentView extends StatelessWidget {
     return LayoutWidget(
         paddingLeft: 0,
         paddingRight: 0,
-        floatingActionButton: ButtonWidget(title: "Agendar", onTap: () {}),
+        floatingActionButton: ButtonWidget(
+          title: "Agendar",
+          onTap: () {
+            showModalBottomSheet(
+              backgroundColor: Colors.transparent,
+              context: context,
+              isScrollControlled: true,
+              isDismissible: true,
+              builder: (BuildContext context) {
+                return DraggableScrollableSheet(
+                  initialChildSize: 0.9, //set this as you want
+                  maxChildSize: 0.9, //set this as you want
+                  minChildSize: 0.9, //set this as you want
+                  expand: true,
+                  builder: (context, scrollController) {
+                    return ProfessionalsPage(); //whatever you're returning, does not have to be a Container
+                  }
+                );
+              }
+            );
+            //showModalBottomSheet(
+            //  
+            //  context: context,
+            //  builder: (context) => const ProfessionalsPage(),
+            //);
+          }
+        ),
         child: Column(
           children: [
             Stack(
