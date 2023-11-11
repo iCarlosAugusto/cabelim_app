@@ -5,6 +5,7 @@ import 'package:cabelin_app/pages/login/login_view.dart';
 import 'package:cabelin_app/pages/loginOrRegister/view/loginOrRegister.dart';
 import 'package:cabelin_app/pages/pageView/pageview_view.dart';
 import 'package:cabelin_app/pages/profile/view/profile.view.dart';
+import 'package:cabelin_app/pages/v2design/chooseService/choose_service_page.dart';
 import 'package:cabelin_app/pages/v2design/professionals/professionals_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -40,6 +41,11 @@ final router = GoRouter(
       path: '/v2/professionals',
       name: 'professionals',
       builder: (context, state) => const ProfessionalsPage(),
+    ),
+      GoRoute(
+      path: '/v2/choose_service',
+      name: 'chooseService',
+      builder: (context, state) =>  ChooseServicePage(),
     ),
   ],
 );

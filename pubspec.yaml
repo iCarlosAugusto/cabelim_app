@@ -48,6 +48,7 @@ dependencies:
   flutter_mobx: ^2.1.0
   image_picker: ^1.0.4
   chips_choice: ^3.0.1
+  snapping_sheet_2: ^3.1.5
 
 dev_dependencies:
   flutter_test:
