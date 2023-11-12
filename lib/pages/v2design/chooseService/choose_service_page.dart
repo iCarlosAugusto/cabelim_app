@@ -6,16 +6,14 @@ class ChooseServicePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DraggableScrollableController resumeSericeScrollController = DraggableScrollableController();
+    DraggableScrollableController resumeSericeScrollController =
+        DraggableScrollableController();
     ScrollController servicesScrollController = ScrollController();
 
     servicesScrollController.addListener(() {
       if (resumeSericeScrollController.size != 0.1) {
-        resumeSericeScrollController.animateTo(
-          0.1,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeIn
-        );
+        resumeSericeScrollController.animateTo(0.1,
+            duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
       }
     });
 
@@ -25,19 +23,54 @@ class ChooseServicePage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          GridView.count(
-              controller: servicesScrollController,
-              shrinkWrap: true,
-              crossAxisCount: 2,
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 20,
-              children: List.generate(10, (index) {
-                return Container(
-                  width: 100,
-                  height: 100,
-                  color: const Color.fromARGB(255, 219, 214, 214),
-                );
-              })),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: GridView.count(
+                controller: servicesScrollController,
+                shrinkWrap: true,
+                crossAxisCount: 2,
+                mainAxisSpacing: 20,
+                crossAxisSpacing: 20,
+                children: List.generate(10, (index) {
+                  return Container(
+                    padding: const EdgeInsets.all(16),
+                    width: 100,
+                    height: 70,
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 219, 214, 214),
+                        borderRadius:
+                            BorderRadiusDirectional.all(Radius.circular(22))),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const TextWidget(
+                          "Corte de Cabelo",
+                          isFontWeight: true,
+                          customFontsize: 16,
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(top: 8),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextWidget(
+                                "45 min",
+                                customFontsize: 13,
+                                color: Colors.grey,
+                              ),
+                              TextWidget(
+                                "R\$ 25",
+                                isFontWeight: true,
+                                customFontsize: 13,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                })),
+          ),
           Expanded(
             child: SizedBox.expand(
               child: DraggableScrollableSheet(
@@ -49,7 +82,14 @@ class ChooseServicePage extends StatelessWidget {
                 builder:
                     (BuildContext context, ScrollController scrollController) {
                   return Container(
-                    color: Colors.black,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadiusDirectional.only(
+                        topEnd: Radius.circular(22),
+                        topStart: Radius.circular(22)
+                      )
+                    ),
                     child: SingleChildScrollView(
                       controller: scrollController,
                       child: Column(
