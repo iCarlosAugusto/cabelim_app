@@ -1,22 +1,57 @@
+import 'package:cabelin_app/widgets/button_widget.dart';
 import 'package:cabelin_app/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
-class ChooseServicePage extends StatelessWidget {
+class ChooseServicePage extends StatefulWidget {
   const ChooseServicePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    DraggableScrollableController resumeSericeScrollController =
-        DraggableScrollableController();
-    ScrollController servicesScrollController = ScrollController();
+  State<ChooseServicePage> createState() => _ChooseServicePageState();
+}
 
-    servicesScrollController.addListener(() {
-      if (resumeSericeScrollController.size != 0.1) {
-        resumeSericeScrollController.animateTo(0.1,
-            duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+class _ChooseServicePageState extends State<ChooseServicePage> {
+  
+  bool showButton = true;
+  bool isScrollAnimation = false;
+
+  DraggableScrollableController resumeSericeScrollController = DraggableScrollableController();
+  ScrollController servicesScrollController = ScrollController();
+
+  @override
+  void initState() {
+    servicesScrollController.addListener(() async {
+      if (resumeSericeScrollController.size != 0.1 && isScrollAnimation == false) {
+        setState(() {
+          showButton = false;
+        });
+        isScrollAnimation = true;
+        await resumeSericeScrollController.animateTo(
+          0.1,
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.easeIn
+        );
+        isScrollAnimation = false;
       }
     });
 
+    resumeSericeScrollController.addListener(() {
+      if(resumeSericeScrollController.size <= 0.4 && showButton && isScrollAnimation == false ) {
+        setState(() {
+          showButton = false;
+        });
+      }
+
+      if(resumeSericeScrollController.size >= 0.4 && !showButton && isScrollAnimation == false) {
+        setState(() {
+          showButton = true;
+        });
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('DraggableScrollableSheet'),
@@ -111,18 +146,32 @@ class ChooseServicePage extends StatelessWidget {
                         ),
                       ),
                       ListView.builder(
+                        padding: const EdgeInsets.only(bottom: 100),
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: 25,
-                        itemBuilder: (BuildContext context, int index) {
-                          return ListTile(title: Text('Item $index'));
-                        },
+                            itemCount: 10,
+                            itemBuilder: (BuildContext context, int index) {
+                              return ListTile(title: Text('Item $index'));
+                            },
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
                 ),
               );
             },
+          ),
+          Visibility(
+            visible: showButton,
+            child: Positioned.fill(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: ButtonWidget(
+                  margin: EdgeInsets.only(left: 16, right: 16, bottom: 22),
+                  title: "Escolher horário",
+                  fullWidth: true,
+                  onTap: (){})
+              ),
+            ),
           ),
         ],
       ),
