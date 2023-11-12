@@ -13,9 +13,22 @@ class ChooseServicePage extends StatefulWidget {
 class _ChooseServicePageState extends State<ChooseServicePage>
     with SingleTickerProviderStateMixin {
   SnappingSheetController snappingSheetController = SnappingSheetController();
+  ScrollController servicesGridController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
+
+    servicesGridController.addListener(() {
+      print(snappingSheetController.currentSnappingPosition.grabbingContentOffset);
+      snappingSheetController.snapToPosition(
+        const SnappingPosition.factor(
+          positionFactor: 0.08,
+          snappingDuration: Duration(milliseconds: 500)
+        )
+      );
+    });
+
+
     return Scaffold(
       appBar: AppbarWidget(title: "Escolha o serviço"),
       body: SnappingSheet(
@@ -126,6 +139,7 @@ class _ChooseServicePageState extends State<ChooseServicePage>
           ),
         ),
         child: SingleChildScrollView(
+          controller: servicesGridController,
           child: Column(
             children: [
               GridView.count(
@@ -156,25 +170,5 @@ class _ChooseServicePageState extends State<ChooseServicePage>
         ),
       ),
     );
-  }
-}
-
-/// Widgets below are just helper widgets for this example
-
-class Background extends StatefulWidget {
-  @override
-  State<Background> createState() => _BackgroundState();
-}
-
-class _BackgroundState extends State<Background> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        color: Colors.grey[200],
-        child: ButtonWidget(
-            title: "Crescer",
-            onTap: () {
-              setState(() {});
-            }));
   }
 }
