@@ -14,7 +14,7 @@ final router = GoRouter(
 
     GoRoute(
       path: "/",
-      builder: (context, state) => const LoginOrRegister(),
+      builder: (context, state) => const ChooseServicePage(),
     ),
     GoRoute(
       path: '/homePage',
