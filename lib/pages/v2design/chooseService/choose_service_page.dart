@@ -20,6 +20,8 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
   ScrollController servicesScrollController = ScrollController();
   PageController pageController = PageController();
 
+  int currentIndexPage = 0;
+
   @override
   void initState() {
     servicesScrollController.addListener(() async {
@@ -63,12 +65,17 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
             duration: const Duration(milliseconds: 800), 
             curve: Curves.ease
           );
+          setState(() {
+            currentIndexPage = 0;
+          });
           return false;
-        };
+        }
         return true;
       },
       child: Scaffold(
-        appBar: AppbarWidget(),
+        appBar: AppbarWidget(
+          title: currentIndexPage == 0 ? "Escolha o serviço" : "Escolha o horário"
+        ),
         body: Stack(
           children: [
             PageView(
@@ -196,6 +203,9 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
                         duration: const Duration(milliseconds: 800),
                         curve: Curves.ease
                       );
+                      setState(() {
+                        currentIndexPage = 1;
+                      });
                     }
                   )
                 ),
