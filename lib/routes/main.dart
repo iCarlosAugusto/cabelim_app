@@ -14,7 +14,7 @@ final router = GoRouter(
 
     GoRoute(
       path: "/",
-      builder: (context, state) => const ChooseServicePage(),
+      builder: (context, state) => const EstableshimentView(),
     ),
     GoRoute(
       path: '/homePage',
