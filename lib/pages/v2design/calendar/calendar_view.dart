@@ -1,8 +1,10 @@
 import 'package:cabelin_app/main.dart';
+import 'package:cabelin_app/pages/v2design/calendar/calendar_controller.dart';
 import 'package:cabelin_app/widgets/button_widget.dart';
 import 'package:cabelin_app/widgets/text_widget.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:intl/intl.dart';
 
 class CalendarView extends StatelessWidget {
@@ -10,9 +12,11 @@ class CalendarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime currentDate = DateTime.now();
-    DateFormat formatter = DateFormat("MM-dd");
+    DateTime todayDate = DateTime.now();
+
+    DateFormat formatter = DateFormat("d 'de' MMMM", 'pt_BR');
     DraggableScrollableController resumeSericeScrollController = getIt<DraggableScrollableController>();
+    CalendarController calendarController = CalendarController();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -21,12 +25,16 @@ class CalendarView extends StatelessWidget {
           children: [
             Theme(
               data: ThemeData(
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent
-              ),
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent),
               child: EasyDateTimeLine(
+                locale: "pt_Br",
                 activeColor: Colors.blue,
-                itemBuilder:(context, dayNumber, dayName, monthName, fullDate, isSelected) {
+                onDateChange: (dateSelected) {
+                  calendarController.changeDate(dateSelected);
+                },
+                itemBuilder: (context, dayNumber, dayName, monthName, fullDate,
+                    isSelected) {
                   return Column(
                     children: [
                       Container(
@@ -34,10 +42,8 @@ class CalendarView extends StatelessWidget {
                         height: 80,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          color: isSelected ? Colors.blue : Colors.black,
-                          borderRadius: BorderRadius.circular(50)
-                        ),
-                        
+                            color: isSelected ? Colors.blue : Colors.black,
+                            borderRadius: BorderRadius.circular(50)),
                         padding: const EdgeInsets.all(16),
                         child: Column(
                           children: [
@@ -54,14 +60,14 @@ class CalendarView extends StatelessWidget {
                               color: isSelected ? Colors.black : Colors.white,
                             ),
                             Visibility(
-                              visible: formatter.format(fullDate) == formatter.format(currentDate),
+                              visible: formatter.format(fullDate) ==
+                                  formatter.format(todayDate),
                               child: Container(
                                 width: 5,
                                 height: 5,
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(100)
-                                ),
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(100)),
                               ),
                             )
                           ],
@@ -71,16 +77,11 @@ class CalendarView extends StatelessWidget {
                   );
                 },
                 headerProps: const EasyHeaderProps(
-                  monthPickerType: MonthPickerType.switcher,
-                  showSelectedDate: true,
-                  monthStyle: TextStyle(
-                    fontFamily: 'Sora'
-                  ),
-                  selectedDateStyle: TextStyle(
-                    fontFamily: 'Sora',
-                    fontWeight: FontWeight.w600
-                  )
-                ),
+                    monthPickerType: MonthPickerType.switcher,
+                    showSelectedDate: true,
+                    monthStyle: TextStyle(fontFamily: 'Sora'),
+                    selectedDateStyle: TextStyle(
+                        fontFamily: 'Sora', fontWeight: FontWeight.w600)),
                 initialDate: DateTime.now(),
               ),
             ),
@@ -89,10 +90,12 @@ class CalendarView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const TextWidget(
-                    "Segunda, Nov 28",
-                    isFontWeight: true,
-                  ),
+                  Observer(builder: (_) {
+                    return TextWidget(
+                      formatter.format(calendarController.currentSelectedDate),
+                      isFontWeight: true,
+                    );
+                  }),
                   const TextWidget(
                     "9 horários disponíveis",
                     customFontsize: 16,
@@ -102,32 +105,32 @@ class CalendarView extends StatelessWidget {
                   GridView.builder(
                     shrinkWrap: true,
                     itemCount: 6,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      mainAxisSpacing: 20,
-                      crossAxisSpacing: 20,
-                      childAspectRatio: 4/2
-                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            mainAxisSpacing: 20,
+                            crossAxisSpacing: 20,
+                            childAspectRatio: 4 / 2),
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          getIt<DraggableScrollableController>().animateTo(
-                            0.5,
-                            duration: const Duration(milliseconds: 1000),
-                            curve: Curves.ease
-                          );
+                          getIt<DraggableScrollableController>().animateTo(0.5,
+                              duration: const Duration(milliseconds: 1000),
+                              curve: Curves.ease);
                         },
                         child: Container(
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            border:  Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(16) 
-                          ),
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(16)),
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.wb_sunny_outlined, size: 16, ),
+                              Icon(
+                                Icons.wb_sunny_outlined,
+                                size: 16,
+                              ),
                               TextWidget(
                                 "13:00",
                                 margin: EdgeInsets.only(left: 3),
