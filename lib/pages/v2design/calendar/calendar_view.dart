@@ -1,10 +1,10 @@
 import 'package:cabelin_app/main.dart';
 import 'package:cabelin_app/pages/v2design/calendar/calendar_controller.dart';
-import 'package:cabelin_app/widgets/button_widget.dart';
 import 'package:cabelin_app/widgets/text_widget.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 class CalendarView extends StatelessWidget {
@@ -13,7 +13,7 @@ class CalendarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DateTime todayDate = DateTime.now();
-
+    initializeDateFormatting();
     DateFormat formatter = DateFormat("d 'de' MMMM", 'pt_BR');
     DraggableScrollableController resumeSericeScrollController = getIt<DraggableScrollableController>();
     CalendarController calendarController = CalendarController();
