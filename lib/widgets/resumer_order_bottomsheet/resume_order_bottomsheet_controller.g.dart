@@ -27,6 +27,23 @@ mixin _$ResumerOrderBottomSheetController
     });
   }
 
+  late final _$_buttonLabelAtom = Atom(
+      name: '_ResumerOrderBottomSheetControllerBase._buttonLabel',
+      context: context);
+
+  @override
+  String get _buttonLabel {
+    _$_buttonLabelAtom.reportRead();
+    return super._buttonLabel;
+  }
+
+  @override
+  set _buttonLabel(String value) {
+    _$_buttonLabelAtom.reportWrite(value, super._buttonLabel, () {
+      super._buttonLabel = value;
+    });
+  }
+
   late final _$_ResumerOrderBottomSheetControllerBaseActionController =
       ActionController(
           name: '_ResumerOrderBottomSheetControllerBase', context: context);
@@ -38,6 +55,19 @@ mixin _$ResumerOrderBottomSheetController
             name: '_ResumerOrderBottomSheetControllerBase.setShowButton');
     try {
       return super.setShowButton(value);
+    } finally {
+      _$_ResumerOrderBottomSheetControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setButtonLabel(dynamic value) {
+    final _$actionInfo =
+        _$_ResumerOrderBottomSheetControllerBaseActionController.startAction(
+            name: '_ResumerOrderBottomSheetControllerBase.setButtonLabel');
+    try {
+      return super.setButtonLabel(value);
     } finally {
       _$_ResumerOrderBottomSheetControllerBaseActionController
           .endAction(_$actionInfo);

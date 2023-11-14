@@ -1,3 +1,4 @@
+import 'package:cabelin_app/events/resume_order_bottom_sheet_events.dart';
 import 'package:cabelin_app/main.dart';
 import 'package:cabelin_app/widgets/button_widget.dart';
 import 'package:cabelin_app/widgets/resumer_order_bottomsheet/resume_order_bottomsheet_controller.dart';
@@ -27,6 +28,10 @@ class ResumeOrderBottomSheet extends StatelessWidget {
 
     getIt<EventBus>().on<ResumeOrderEvent>().listen((event) {
       resumeController.setShowButton(event.showButton);
+    });
+
+    getIt<EventBus>().on<ResumeOrderSetButtonLabel>().listen((event) { 
+      resumeController.setButtonLabel(event.label);
     });
 
     draggableController.addListener(() {
@@ -100,15 +105,15 @@ class ResumeOrderBottomSheet extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: ButtonWidget(
                   margin: const EdgeInsets.only(left: 16, right: 16, bottom: 22),
-                  title: "Escolher horário",
+                  title: resumeController.buttonLabel,
                   fullWidth: true,
-                  onTap: () {
-                    pageController.animateToPage(
+                  onTap: () async {
+                    resumeController.setButtonLabel("Finalizar pedido");
+                    await pageController.animateToPage(
                       1,
-                        duration: const Duration(milliseconds: 800),
-                        curve: Curves.ease
+                      duration: const Duration(milliseconds: 800),
+                      curve: Curves.ease
                     );
-                    //chooseServiceController.setCurrentIndexPage
                   }
                 )
               ),

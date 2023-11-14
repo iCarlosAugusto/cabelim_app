@@ -12,4 +12,13 @@ abstract class _ResumerOrderBottomSheetControllerBase with Store {
 
   @action
   setShowButton(value) => _showButton = value;
+
+
+  @observable
+  String _buttonLabel = "Escolha o horário";
+
+  String get buttonLabel => _buttonLabel;
+
+  @action
+  setButtonLabel(value) => _buttonLabel = value;
 }

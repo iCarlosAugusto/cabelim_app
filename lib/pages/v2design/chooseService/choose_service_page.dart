@@ -1,3 +1,4 @@
+import 'package:cabelin_app/events/resume_order_bottom_sheet_events.dart';
 import 'package:cabelin_app/main.dart';
 import 'package:cabelin_app/pages/v2design/calendar/calendar_view.dart';
 import 'package:cabelin_app/pages/v2design/chooseService/choose_service_controller.dart';
@@ -52,8 +53,14 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
     return WillPopScope(
       onWillPop: () async {
         if (pageController.page == 1) {
-          pageController.animateToPage(0,
-              duration: const Duration(milliseconds: 800), curve: Curves.ease);
+          getIt<EventBus>().fire(ResumeOrderSetButtonLabel(
+            label: "Escolher horário"
+          ));
+          pageController.animateToPage(
+            0,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.ease
+          );       
           chooseServiceController.setCurrentIndexPage(0);
           return false;
         }
