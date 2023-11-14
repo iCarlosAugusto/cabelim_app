@@ -153,6 +153,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  calendar_timeline:
+    dependency: "direct main"
+    description:
+      name: calendar_timeline
+      sha256: "7437ce216a7c579f2f9554f385dd77a3d5c9d15a63bc38d4d155b66302c85fba"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.2"
   characters:
     dependency: transitive
     description:
@@ -241,6 +249,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.3"
+  easy_date_timeline:
+    dependency: "direct main"
+    description:
+      name: easy_date_timeline
+      sha256: "084450183350ea8f3e658b2b073b691c8d170c5c64eeb32c6cda3c32c78aba6f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   fake_async:
     dependency: transitive
     description:
@@ -592,6 +608,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1+1"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.18.1"
   io:
     dependency: transitive
     description:
@@ -872,6 +896,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
+  scrollable_positioned_list:
+    dependency: transitive
+    description:
+      name: scrollable_positioned_list
+      sha256: "1b54d5f1329a1e263269abc9e2543d90806131aa14fe7c6062a8054d57249287"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.8"
   shelf:
     dependency: transitive
     description:
@@ -893,14 +925,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  snapping_sheet_2:
-    dependency: "direct main"
-    description:
-      name: snapping_sheet_2
-      sha256: "8e7c7b746a226673cd5d2680b23dfa315e5ac75f551e8c05aa37eba24fb5487d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.5"
   source_gen:
     dependency: transitive
     description:

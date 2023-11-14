@@ -48,7 +48,9 @@ dependencies:
   flutter_mobx: ^2.1.0
   image_picker: ^1.0.4
   chips_choice: ^3.0.1
-  snapping_sheet_2: ^3.1.5
+  calendar_timeline: ^1.1.2
+  easy_date_timeline: ^1.0.2
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
