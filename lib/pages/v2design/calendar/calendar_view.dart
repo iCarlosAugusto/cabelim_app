@@ -15,74 +15,128 @@ class CalendarView extends StatelessWidget {
     DraggableScrollableController resumeSericeScrollController = getIt<DraggableScrollableController>();
 
     return Scaffold(
-      body: Column(
-        children: [
-          Theme(
-            data: ThemeData(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent
-            ),
-            child: EasyDateTimeLine(
-              activeColor: Colors.blue,
-              itemBuilder:(context, dayNumber, dayName, monthName, fullDate, isSelected) {
-                return Column(
-                  children: [
-                    Container(
-                      width: 80,
-                      height: 80,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: isSelected ? Colors.blue : Colors.black,
-                        borderRadius: BorderRadius.circular(50)
-                      ),
-                      
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        children: [
-                          TextWidget(
-                            dayNumber.toString(),
-                            color: isSelected ? Colors.black : Colors.white,
-                            isFontWeight: true,
-                            customFontsize: 16,
-                          ),
-                          TextWidget(
-                            dayName,
-                            isFontWeight: true,
-                            customFontsize: 13,
-                            color: isSelected ? Colors.black : Colors.white,
-                          ),
-                          Visibility(
-                            visible: formatter.format(fullDate) == formatter.format(currentDate),
-                            child: Container(
-                              width: 5,
-                              height: 5,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(100)
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                );
-              },
-              headerProps: const EasyHeaderProps(
-                monthPickerType: MonthPickerType.switcher,
-                showSelectedDate: true,
-                monthStyle: TextStyle(
-                  fontFamily: 'Sora'
-                ),
-                selectedDateStyle: TextStyle(
-                  fontFamily: 'Sora',
-                  fontWeight: FontWeight.w600
-                )
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Theme(
+              data: ThemeData(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent
               ),
-              initialDate: DateTime.now(),
+              child: EasyDateTimeLine(
+                activeColor: Colors.blue,
+                itemBuilder:(context, dayNumber, dayName, monthName, fullDate, isSelected) {
+                  return Column(
+                    children: [
+                      Container(
+                        width: 80,
+                        height: 80,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: isSelected ? Colors.blue : Colors.black,
+                          borderRadius: BorderRadius.circular(50)
+                        ),
+                        
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          children: [
+                            TextWidget(
+                              dayNumber.toString(),
+                              color: isSelected ? Colors.black : Colors.white,
+                              isFontWeight: true,
+                              customFontsize: 16,
+                            ),
+                            TextWidget(
+                              dayName,
+                              isFontWeight: true,
+                              customFontsize: 13,
+                              color: isSelected ? Colors.black : Colors.white,
+                            ),
+                            Visibility(
+                              visible: formatter.format(fullDate) == formatter.format(currentDate),
+                              child: Container(
+                                width: 5,
+                                height: 5,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(100)
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
+                },
+                headerProps: const EasyHeaderProps(
+                  monthPickerType: MonthPickerType.switcher,
+                  showSelectedDate: true,
+                  monthStyle: TextStyle(
+                    fontFamily: 'Sora'
+                  ),
+                  selectedDateStyle: TextStyle(
+                    fontFamily: 'Sora',
+                    fontWeight: FontWeight.w600
+                  )
+                ),
+                initialDate: DateTime.now(),
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const TextWidget(
+                    "Segunda, Nov 28",
+                    isFontWeight: true,
+                  ),
+                  const TextWidget(
+                    "9 horários disponíveis",
+                    customFontsize: 16,
+                    color: Colors.grey,
+                    margin: EdgeInsets.only(bottom: 16),
+                  ),
+                  GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: 6,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 20,
+                      childAspectRatio: 4/2
+                    ),
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          border:  Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(16) 
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.wb_sunny_outlined, size: 16, ),
+                            TextWidget(
+                              "13:00",
+                              margin: EdgeInsets.only(left: 3),
+                              customFontsize: 13,
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  )
+                ],
+              ),
+            ),
+      
+
+          ],
+        ),
       ),
     );
   }
