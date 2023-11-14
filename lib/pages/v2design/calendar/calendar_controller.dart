@@ -5,6 +5,15 @@ class CalendarController = _CalendarControllerBase with _$CalendarController;
 
 abstract class _CalendarControllerBase with Store {
 
+
+  @observable
+  int? currentTimeSelected;
+
+  @action
+  void setCurrentTimeSelected(int newTime) {
+    currentTimeSelected = newTime;
+  } 
+
   @observable
   DateTime currentSelectedDate = DateTime.now();
 

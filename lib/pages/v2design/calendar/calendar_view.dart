@@ -15,7 +15,8 @@ class CalendarView extends StatelessWidget {
     DateTime todayDate = DateTime.now();
     initializeDateFormatting();
     DateFormat formatter = DateFormat("d 'de' MMMM", 'pt_BR');
-    DraggableScrollableController resumeSericeScrollController = getIt<DraggableScrollableController>();
+    DraggableScrollableController resumeSericeScrollController =
+        getIt<DraggableScrollableController>();
     CalendarController calendarController = CalendarController();
 
     return Scaffold(
@@ -115,30 +116,42 @@ class CalendarView extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
+                          calendarController.setCurrentTimeSelected(index);
                           getIt<DraggableScrollableController>().animateTo(0.5,
                               duration: const Duration(milliseconds: 1000),
                               curve: Curves.ease);
                         },
-                        child: Container(
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(16)),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.wb_sunny_outlined,
-                                size: 16,
-                              ),
-                              TextWidget(
-                                "13:00",
-                                margin: EdgeInsets.only(left: 3),
-                                customFontsize: 13,
-                              )
-                            ],
-                          ),
-                        ),
+                        child: Observer(builder: (_) {
+                          return Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                                color:  calendarController.currentTimeSelected != null && calendarController.currentTimeSelected == index 
+                                  ? Colors.blue 
+                                  : Colors.white,
+                                border: Border.all(
+                                  color: calendarController.currentTimeSelected != null && calendarController.currentTimeSelected == index
+                                  ? Colors.blue
+                                  : Colors.grey
+                                ),
+                              borderRadius: BorderRadius.circular(16)
+                            ),
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.wb_sunny_outlined,
+                                  size: 16,
+                                ),
+                                TextWidget(
+                                  "13:00",
+                                  margin: EdgeInsets.only(left: 3),
+                                  customFontsize: 13,
+                                  isFontWeight: true,
+                                )
+                              ],
+                            ),
+                          );
+                        }),
                       );
                     },
                   )
