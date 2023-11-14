@@ -1,11 +1,14 @@
-import 'package:cabelin_app/pages/home/home_page.dart';
-import 'package:cabelin_app/pages/login/login_view.dart';
 import 'package:cabelin_app/routes/main.dart';
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get_it/get_it.dart';
 import 'firebase_options.dart';
 
+EventBus eventApp = EventBus();
+final getIt = GetIt.instance;
 void main() async {
+  getIt.registerSingleton<DraggableScrollableController>(DraggableScrollableController());
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
