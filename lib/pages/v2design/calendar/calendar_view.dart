@@ -110,22 +110,31 @@ class CalendarView extends StatelessWidget {
                     ),
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
-                      return Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          border:  Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(16) 
-                        ),
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.wb_sunny_outlined, size: 16, ),
-                            TextWidget(
-                              "13:00",
-                              margin: EdgeInsets.only(left: 3),
-                              customFontsize: 13,
-                            )
-                          ],
+                      return GestureDetector(
+                        onTap: () {
+                          getIt<DraggableScrollableController>().animateTo(
+                            0.5,
+                            duration: const Duration(milliseconds: 1000),
+                            curve: Curves.ease
+                          );
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            border:  Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(16) 
+                          ),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.wb_sunny_outlined, size: 16, ),
+                              TextWidget(
+                                "13:00",
+                                margin: EdgeInsets.only(left: 3),
+                                customFontsize: 13,
+                              )
+                            ],
+                          ),
                         ),
                       );
                     },
@@ -133,8 +142,6 @@ class CalendarView extends StatelessWidget {
                 ],
               ),
             ),
-      
-
           ],
         ),
       ),
