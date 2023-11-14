@@ -23,7 +23,7 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
 
   DraggableScrollableController resumeSericeScrollController = getIt<DraggableScrollableController>();
   ScrollController servicesScrollController = ScrollController();
-  PageController pageController = PageController();
+  PageController pageController = getIt<PageController>();
 
   int currentIndexPage = 0;
 
@@ -32,26 +32,18 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
     super.initState();
     servicesScrollController.addListener(() async {
       if (resumeSericeScrollController.size != 0.1 && isScrollAnimation == false) {
-        chooseServiceController.setShowButton(false);
         isScrollAnimation = true;
+        getIt<EventBus>().fire(ResumeOrderEvent(
+          buttonLabel: "TESTE",
+          showButton: false
+        ));
+
         await resumeSericeScrollController.animateTo(
           0.1,
-            duration: const Duration(milliseconds: 400),
+          duration: const Duration(milliseconds: 400),
           curve: Curves.easeIn
         );
         isScrollAnimation = false;
-      }
-    });
-
-    resumeSericeScrollController.addListener(() {
-      if(mounted){
-        if(resumeSericeScrollController.size <= 0.4 && chooseServiceController.showButton && isScrollAnimation == false){
-          chooseServiceController.setShowButton(false);
-        }
-
-        if(resumeSericeScrollController.size >= 0.4 && !chooseServiceController.showButton && isScrollAnimation == false) {
-          chooseServiceController.setShowButton(true);
-        }
       }
     });
   }
@@ -132,28 +124,13 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
                 const CalendarView(),
               ],
             ),
-            const ResumeOrderBottomSheet(),
-            Observer(builder: (_) {
-              return Visibility(
-                visible: chooseServiceController.showButton,
-                child: Positioned.fill(
-                  child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: ButtonWidget(
-                          margin: EdgeInsets.only(left: 16, right: 16, bottom: 22),
-                          title: "Escolher horário",
-                          fullWidth: true,
-                          onTap: (){
-                            pageController.animateToPage(
-                              1,
-                                duration: const Duration(milliseconds: 800),
-                                curve: Curves.ease);
-                            chooseServiceController.setCurrentIndexPage(1);
-
-                          })),
-                ),
-              );
+            ButtonWidget(title: "Teste", onTap: () {
+              getIt<EventBus>().fire(ResumeOrderEvent(
+                buttonLabel: "TESTE",
+                showButton: false
+              ));
             }),
+            const ResumeOrderBottomSheet(),
           ],
         ),
       ),

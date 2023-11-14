@@ -5,10 +5,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 import 'firebase_options.dart';
 
-EventBus eventApp = EventBus();
 final getIt = GetIt.instance;
 void main() async {
+
   getIt.registerSingleton<DraggableScrollableController>(DraggableScrollableController());
+  getIt.registerSingleton<EventBus>(EventBus(sync: true));
+  getIt.registerSingleton<PageController>(PageController());
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
