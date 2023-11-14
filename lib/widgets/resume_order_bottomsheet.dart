@@ -7,12 +7,13 @@ class ResumeOrderBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DraggableScrollableController draggableController = getIt<DraggableScrollableController>();
     return DraggableScrollableSheet(
         maxChildSize: 0.9,
         minChildSize: 0.1,
         snap: true,
         snapSizes: const [0.1, 0.5, 0.9],
-        controller: getIt<DraggableScrollableController>(),
+        controller: draggableController,
         builder:
           (BuildContext context, ScrollController scrollController) {
             return Container(
@@ -41,7 +42,7 @@ class ResumeOrderBottomSheet extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: TextWidget(
                         "Seu pedido",
-                        customFontsize: 16,
+customFontsize: 16,
                         isFontWeight: true,
                         color: Colors.white,
                       ),
