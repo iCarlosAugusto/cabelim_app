@@ -21,7 +21,6 @@ class ResumeOrderBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isScrollAnimation = false;
     PageController pageController = getIt<PageController>();
     DraggableScrollableController draggableController = getIt<DraggableScrollableController>();
     ResumerOrderBottomSheetController resumeController = ResumerOrderBottomSheetController();
@@ -30,14 +29,12 @@ class ResumeOrderBottomSheet extends StatelessWidget {
       resumeController.setShowButton(event.showButton);
     });
 
-    //TODO - ARRUMAR PISCA NA HORA DE DESCER O MODAL
-
     draggableController.addListener(() {
-      if(draggableController.size <= 0.4 && resumeController.showButton && isScrollAnimation == false){
+      if(draggableController.size <= 0.4 && resumeController.showButton){
         resumeController.setShowButton(false);
       }
 
-      if(draggableController.size >= 0.4 && !resumeController.showButton && isScrollAnimation == false) {
+      if(draggableController.size >= 0.4 && !resumeController.showButton) {
         resumeController.setShowButton(true);
       }
     });

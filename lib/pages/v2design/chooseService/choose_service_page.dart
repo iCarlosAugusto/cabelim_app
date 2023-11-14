@@ -33,16 +33,15 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
     servicesScrollController.addListener(() async {
       if (resumeSericeScrollController.size != 0.1 && isScrollAnimation == false) {
         isScrollAnimation = true;
-        getIt<EventBus>().fire(ResumeOrderEvent(
-          buttonLabel: "TESTE",
-          showButton: false
-        ));
-
         await resumeSericeScrollController.animateTo(
           0.1,
           duration: const Duration(milliseconds: 400),
           curve: Curves.easeIn
         );
+        getIt<EventBus>().fire(ResumeOrderEvent(
+          buttonLabel: "TESTE",
+          showButton: false
+        ));
         isScrollAnimation = false;
       }
     });
@@ -124,12 +123,6 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
                 const CalendarView(),
               ],
             ),
-            ButtonWidget(title: "Teste", onTap: () {
-              getIt<EventBus>().fire(ResumeOrderEvent(
-                buttonLabel: "TESTE",
-                showButton: false
-              ));
-            }),
             const ResumeOrderBottomSheet(),
           ],
         ),
