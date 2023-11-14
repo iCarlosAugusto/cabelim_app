@@ -28,6 +28,7 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
 
   @override
   void initState() {
+    super.initState();
     servicesScrollController.addListener(() async {
       if (resumeSericeScrollController.size != 0.1 && isScrollAnimation == false) {
         setState(() {
@@ -44,19 +45,20 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
     });
 
     resumeSericeScrollController.addListener(() {
-      if(resumeSericeScrollController.size <= 0.4 && showButton && isScrollAnimation == false ) {
-        setState(() {
-          showButton = false;
-        });
-      }
+      if(mounted){
+        if(resumeSericeScrollController.size <= 0.4 && showButton && isScrollAnimation == false ) {
+          setState(() {
+            showButton = false;
+          });
+        }
 
-      if(resumeSericeScrollController.size >= 0.4 && !showButton && isScrollAnimation == false) {
-        setState(() {
-          showButton = true;
-        });
+        if(resumeSericeScrollController.size >= 0.4 && !showButton && isScrollAnimation == false) {
+          setState(() {
+            showButton = true;
+          });
+        }
       }
     });
-    super.initState();
   }
 
   @override
