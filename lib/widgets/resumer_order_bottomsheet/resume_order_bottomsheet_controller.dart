@@ -21,4 +21,13 @@ abstract class _ResumerOrderBottomSheetControllerBase with Store {
 
   @action
   setButtonLabel(value) => _buttonLabel = value;
+
+  @observable
+  String? _timeSelected;
+
+  String? get timeSelected => _timeSelected; 
+
+  @action
+  setTimeSelected(String? value) => _timeSelected = value;
+
 }

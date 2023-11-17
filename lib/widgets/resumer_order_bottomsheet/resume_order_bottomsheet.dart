@@ -34,13 +34,29 @@ class ResumeOrderBottomSheet extends StatelessWidget {
       resumeController.setButtonLabel(event.label);
     });
 
+    getIt<EventBus>().on<ResumeOrderSetTime>().listen((event) { 
+      resumeController.setTimeSelected(event.time);
+    });
+    
     draggableController.addListener(() {
-      if(draggableController.size <= 0.4 && resumeController.showButton){
-        resumeController.setShowButton(false);
+      if(pageController.page == 0) {
+        if(draggableController.size <= 0.4 && resumeController.showButton){
+          resumeController.setShowButton(false);
+        }
+
+        if(draggableController.size >= 0.4 && !resumeController.showButton) {
+          resumeController.setShowButton(true);
+        }
       }
 
-      if(draggableController.size >= 0.4 && !resumeController.showButton) {
-        resumeController.setShowButton(true);
+      if(pageController.page == 1 && resumeController.timeSelected != null){
+        if(draggableController.size <= 0.4 && resumeController.showButton){
+          resumeController.setShowButton(false);
+        }
+
+        if(draggableController.size >= 0.4 && !resumeController.showButton) {
+          resumeController.setShowButton(true);
+        }
       }
     });
 
@@ -108,12 +124,18 @@ class ResumeOrderBottomSheet extends StatelessWidget {
                   title: resumeController.buttonLabel,
                   fullWidth: true,
                   onTap: () async {
-                    resumeController.setButtonLabel("Finalizar pedido");
                     await pageController.animateToPage(
                       1,
                       duration: const Duration(milliseconds: 800),
                       curve: Curves.ease
                     );
+                    await draggableController.animateTo(
+                      0.1,
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.linear
+                    );
+                    resumeController.setShowButton(false);
+                    resumeController.setButtonLabel("Finalizar pedido");
                   }
                 )
               ),

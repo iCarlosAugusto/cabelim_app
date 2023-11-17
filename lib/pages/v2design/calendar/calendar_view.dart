@@ -1,7 +1,9 @@
+import 'package:cabelin_app/events/resume_order_bottom_sheet_events.dart';
 import 'package:cabelin_app/main.dart';
 import 'package:cabelin_app/pages/v2design/calendar/calendar_controller.dart';
 import 'package:cabelin_app/widgets/text_widget.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -60,8 +62,7 @@ class CalendarView extends StatelessWidget {
                               color: isSelected ? Colors.black : Colors.white,
                             ),
                             Visibility(
-                              visible: formatter.format(fullDate) ==
-                                  formatter.format(todayDate),
+                              visible: formatter.format(fullDate) == formatter.format(todayDate),
                               child: Container(
                                 width: 5,
                                 height: 5,
@@ -115,6 +116,7 @@ class CalendarView extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
+                          getIt<EventBus>().fire(ResumeOrderSetTime(time: index.toString()));
                           calendarController.setCurrentTimeSelected(index);
                           getIt<DraggableScrollableController>().animateTo(0.5,
                               duration: const Duration(milliseconds: 1000),

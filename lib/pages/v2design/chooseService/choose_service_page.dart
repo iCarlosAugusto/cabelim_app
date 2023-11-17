@@ -56,6 +56,10 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
           getIt<EventBus>().fire(ResumeOrderSetButtonLabel(
             label: "Escolher horário"
           ));
+
+          getIt<EventBus>().fire(ResumeOrderSetTime(
+            time: null
+          ));
           pageController.animateToPage(
             0,
             duration: const Duration(milliseconds: 500),

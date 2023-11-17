@@ -44,6 +44,23 @@ mixin _$ResumerOrderBottomSheetController
     });
   }
 
+  late final _$_timeSelectedAtom = Atom(
+      name: '_ResumerOrderBottomSheetControllerBase._timeSelected',
+      context: context);
+
+  @override
+  String? get _timeSelected {
+    _$_timeSelectedAtom.reportRead();
+    return super._timeSelected;
+  }
+
+  @override
+  set _timeSelected(String? value) {
+    _$_timeSelectedAtom.reportWrite(value, super._timeSelected, () {
+      super._timeSelected = value;
+    });
+  }
+
   late final _$_ResumerOrderBottomSheetControllerBaseActionController =
       ActionController(
           name: '_ResumerOrderBottomSheetControllerBase', context: context);
@@ -68,6 +85,19 @@ mixin _$ResumerOrderBottomSheetController
             name: '_ResumerOrderBottomSheetControllerBase.setButtonLabel');
     try {
       return super.setButtonLabel(value);
+    } finally {
+      _$_ResumerOrderBottomSheetControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setTimeSelected(String? value) {
+    final _$actionInfo =
+        _$_ResumerOrderBottomSheetControllerBaseActionController.startAction(
+            name: '_ResumerOrderBottomSheetControllerBase.setTimeSelected');
+    try {
+      return super.setTimeSelected(value);
     } finally {
       _$_ResumerOrderBottomSheetControllerBaseActionController
           .endAction(_$actionInfo);
