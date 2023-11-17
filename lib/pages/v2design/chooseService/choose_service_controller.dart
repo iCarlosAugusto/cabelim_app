@@ -12,15 +12,4 @@ abstract class _ChooseServiceControllerBase with Store {
 
   @action
   setCurrentIndexPage(value) => _currentIndexPage = value;
-
-  
-  @observable
-  bool _showButton = true;
-  
-  bool get showButton => _showButton;
-
-  @action
-  setShowButton(value) => _showButton = value;
-
-
 }
