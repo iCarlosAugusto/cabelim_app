@@ -23,7 +23,7 @@ class ResumeOrderBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     PageController pageController = getIt<PageController>();
-    DraggableScrollableController draggableController = getIt<DraggableScrollableController>();
+  ResumeDraggableController draggableController = getIt<ResumeDraggableController>();
     ResumerOrderBottomSheetController resumeController = ResumerOrderBottomSheetController();
 
     getIt<EventBus>().on<ResumeOrderEvent>().listen((event) {
@@ -37,7 +37,7 @@ class ResumeOrderBottomSheet extends StatelessWidget {
     getIt<EventBus>().on<ResumeOrderSetTime>().listen((event) { 
       resumeController.setTimeSelected(event.time);
     });
-    
+
     draggableController.addListener(() {
       if(pageController.page == 0) {
         if(draggableController.size <= 0.4 && resumeController.showButton){
@@ -80,7 +80,7 @@ class ResumeOrderBottomSheet extends StatelessWidget {
                 controller: scrollController,
                 child: Column(
                   children: [
-                    Container(
+                                        Container(
                       margin: const EdgeInsets.only(top: 20),
                       width: 70,
                       height: 5,

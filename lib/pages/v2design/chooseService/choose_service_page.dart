@@ -3,12 +3,10 @@ import 'package:cabelin_app/main.dart';
 import 'package:cabelin_app/pages/v2design/calendar/calendar_view.dart';
 import 'package:cabelin_app/pages/v2design/chooseService/choose_service_controller.dart';
 import 'package:cabelin_app/widgets/appbar_widget.dart';
-import 'package:cabelin_app/widgets/button_widget.dart';
 import 'package:cabelin_app/widgets/resumer_order_bottomsheet/resume_order_bottomsheet.dart';
 import 'package:cabelin_app/widgets/text_widget.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 
 class ChooseServicePage extends StatefulWidget {
   const ChooseServicePage({super.key});
@@ -22,7 +20,7 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
 
   bool isScrollAnimation = false;
 
-  DraggableScrollableController resumeSericeScrollController = getIt<DraggableScrollableController>();
+  ResumeDraggableController resumeSericeScrollController = getIt<ResumeDraggableController>();
   ScrollController servicesScrollController = ScrollController();
   PageController pageController = getIt<PageController>();
 
@@ -33,8 +31,8 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
     super.initState();
     servicesScrollController.addListener(() async {
       if (resumeSericeScrollController.size != 0.1 && isScrollAnimation == false) {
-        isScrollAnimation = true;
-        await resumeSericeScrollController.animateTo(
+      isScrollAnimation = true;
+      await resumeSericeScrollController.animateTo(
           0.1,
           duration: const Duration(milliseconds: 400),
           curve: Curves.easeIn
@@ -88,41 +86,46 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
                       mainAxisSpacing: 20,
                       crossAxisSpacing: 20,
                       children: List.generate(10, (index) {
-                        return Container(
-                          padding: const EdgeInsets.all(16),
-                          width: 100,
-                          height: 70,
-                          decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 219, 214, 214),
-                              borderRadius:
-                                BorderRadiusDirectional.all(Radius.circular(22))),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const TextWidget(
-                                "Corte de Cabelo",
-                                isFontWeight: true,
-                                customFontsize: 16,
-                              ),
-                              Container(
-                                margin: const EdgeInsets.only(top: 8),
-                                child: const Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    TextWidget(
-                                      "45 min",
-                                      customFontsize: 13,
-                                      color: Colors.grey,
-                                    ),
-                                    TextWidget(
-                                      "R\$ 25",
-                                      isFontWeight: true,
-                                      customFontsize: 13,
-                                    ),
-                                  ],
+                        return GestureDetector(
+                          onTap: () async{
+                            await resumeSericeScrollController.showMiddle();
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            width: 100,
+                            height: 70,
+                            decoration: const BoxDecoration(
+                                color: Color.fromARGB(255, 219, 214, 214),
+                                borderRadius:
+                                  BorderRadiusDirectional.all(Radius.circular(22))),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const TextWidget(
+                                  "Corte de Cabelo",
+                                  isFontWeight: true,
+                                  customFontsize: 16,
                                 ),
-                              )
-                            ],
+                                Container(
+                                  margin: const EdgeInsets.only(top: 8),
+                                  child: const Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      TextWidget(
+                                        "45 min",
+                                        customFontsize: 13,
+                                        color: Colors.grey,
+                                      ),
+                                      TextWidget(
+                                        "R\$ 25",
+                                        isFontWeight: true,
+                                        customFontsize: 13,
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         );
                       })),

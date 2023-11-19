@@ -17,7 +17,7 @@ class CalendarView extends StatelessWidget {
     DateTime todayDate = DateTime.now();
     initializeDateFormatting();
     DateFormat formatter = DateFormat("d 'de' MMMM", 'pt_BR');
-    DraggableScrollableController resumeSericeScrollController = getIt<DraggableScrollableController>();
+    ResumeDraggableController resumeSericeScrollController = getIt<ResumeDraggableController>();
     CalendarController calendarController = CalendarController();
 
     return Scaffold(

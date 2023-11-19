@@ -1,14 +1,55 @@
 import 'package:cabelin_app/routes/main.dart';
+import 'package:cabelin_app/widgets/resumer_order_bottomsheet/resume_order_bottomsheet.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 import 'firebase_options.dart';
 
+
+class ResumeDraggableController extends DraggableScrollableController {
+
+  hideResume() async {
+    await animateTo(
+      0.0,
+      duration: const Duration(microseconds: 1),
+      curve: Curves.linear
+    );
+  }
+
+  showHeader() async {
+    await animateTo(
+      0.1,
+      duration: const Duration(milliseconds: 300), 
+      curve: Curves.linear
+    );
+    getIt<EventBus>().fire(ResumeOrderEvent(
+      buttonLabel: "TESTE",
+      showButton: false
+    ));
+  }
+
+  showMiddle() async {
+    await animateTo(
+      0.5,
+      duration: const Duration(milliseconds: 300), 
+      curve: Curves.linear
+    );
+  }
+
+  showFullResume() async {
+    await animateTo(
+      1.0,
+      duration: const Duration(milliseconds: 300), 
+      curve: Curves.linear
+    );
+  }
+}
+
 final getIt = GetIt.instance;
 void main() async {
 
-  getIt.registerSingleton<DraggableScrollableController>(DraggableScrollableController());
+  getIt.registerSingleton<ResumeDraggableController>(ResumeDraggableController());
   getIt.registerSingleton<EventBus>(EventBus(sync: true));
   getIt.registerSingleton<PageController>(PageController());
 
