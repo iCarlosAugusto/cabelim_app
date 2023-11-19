@@ -118,9 +118,7 @@ class CalendarView extends StatelessWidget {
                         onTap: () {
                           getIt<EventBus>().fire(ResumeOrderSetTime(time: index.toString()));
                           calendarController.setCurrentTimeSelected(index);
-                          getIt<DraggableScrollableController>().animateTo(0.5,
-                              duration: const Duration(milliseconds: 1000),
-                              curve: Curves.ease);
+                          resumeSericeScrollController.showMiddle();
                         },
                         child: Observer(builder: (_) {
                           return Container(
