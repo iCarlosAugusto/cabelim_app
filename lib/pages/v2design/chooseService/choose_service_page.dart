@@ -31,16 +31,8 @@ class _ChooseServicePageState extends State<ChooseServicePage> {
     super.initState();
     servicesScrollController.addListener(() async {
       if (resumeSericeScrollController.size != 0.1 && isScrollAnimation == false) {
-      isScrollAnimation = true;
-      await resumeSericeScrollController.animateTo(
-          0.1,
-          duration: const Duration(milliseconds: 400),
-          curve: Curves.easeIn
-        );
-        getIt<EventBus>().fire(ResumeOrderEvent(
-          buttonLabel: "TESTE",
-          showButton: false
-        ));
+        isScrollAnimation = true;
+        await resumeSericeScrollController.showHeader();
         isScrollAnimation = false;
       }
     });

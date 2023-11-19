@@ -23,13 +23,16 @@ class ResumeDraggableController extends DraggableScrollableController {
       duration: const Duration(milliseconds: 300), 
       curve: Curves.linear
     );
-    getIt<EventBus>().fire(ResumeOrderEvent(
+    getIt<EventBus>().fire(ResumeSetButtonVisibility(
       buttonLabel: "TESTE",
       showButton: false
     ));
   }
 
   showMiddle() async {
+    getIt<EventBus>().fire(ResumeSetVisible(
+      isVisible: true
+    ));
     await animateTo(
       0.5,
       duration: const Duration(milliseconds: 300), 

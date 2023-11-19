@@ -6,28 +6,33 @@ class ResumerOrderBottomSheetController = _ResumerOrderBottomSheetControllerBase
 abstract class _ResumerOrderBottomSheetControllerBase with Store {
   
   @observable
-  bool _showButton = true;
-  
+  bool _showButton = false;
   bool get showButton => _showButton;
-
   @action
   setShowButton(value) => _showButton = value;
 
 
   @observable
   String _buttonLabel = "Escolha o horário";
-
   String get buttonLabel => _buttonLabel;
-
   @action
   setButtonLabel(value) => _buttonLabel = value;
 
   @observable
   String? _timeSelected;
-
   String? get timeSelected => _timeSelected; 
-
   @action
   setTimeSelected(String? value) => _timeSelected = value;
+
+  @observable
+  bool shouldHideResume = true;
+  @action
+  setShouldHideResume(bool value) => shouldHideResume = value; 
+
+  @action
+  handleShowResume() {
+    _showButton = true;
+    shouldHideResume = false;
+  }
 
 }

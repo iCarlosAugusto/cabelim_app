@@ -61,6 +61,23 @@ mixin _$ResumerOrderBottomSheetController
     });
   }
 
+  late final _$shouldHideResumeAtom = Atom(
+      name: '_ResumerOrderBottomSheetControllerBase.shouldHideResume',
+      context: context);
+
+  @override
+  bool get shouldHideResume {
+    _$shouldHideResumeAtom.reportRead();
+    return super.shouldHideResume;
+  }
+
+  @override
+  set shouldHideResume(bool value) {
+    _$shouldHideResumeAtom.reportWrite(value, super.shouldHideResume, () {
+      super.shouldHideResume = value;
+    });
+  }
+
   late final _$_ResumerOrderBottomSheetControllerBaseActionController =
       ActionController(
           name: '_ResumerOrderBottomSheetControllerBase', context: context);
@@ -105,9 +122,35 @@ mixin _$ResumerOrderBottomSheetController
   }
 
   @override
+  dynamic setShouldHideResume(bool value) {
+    final _$actionInfo =
+        _$_ResumerOrderBottomSheetControllerBaseActionController.startAction(
+            name: '_ResumerOrderBottomSheetControllerBase.setShouldHideResume');
+    try {
+      return super.setShouldHideResume(value);
+    } finally {
+      _$_ResumerOrderBottomSheetControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic handleShowResume() {
+    final _$actionInfo =
+        _$_ResumerOrderBottomSheetControllerBaseActionController.startAction(
+            name: '_ResumerOrderBottomSheetControllerBase.handleShowResume');
+    try {
+      return super.handleShowResume();
+    } finally {
+      _$_ResumerOrderBottomSheetControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-
+shouldHideResume: ${shouldHideResume}
     ''';
   }
 }
